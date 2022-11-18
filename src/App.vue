@@ -5,9 +5,10 @@
 
       <!-- gets the template from WouldYouRather.vue -->
       <!-- v-for to loop over questions array -->
-      <!-- v-bind for questions and answers -->
+      <!-- v-bind for questions and answers and id values to child -->
       <would-you-rather 
       v-for="question in questions" 
+      v-bind:id = "question.id"
       v-bind:question="question.question"
       v-bind:answer1="question.answer1"
       v-bind:answer2="question.answer2"
@@ -16,8 +17,8 @@
 
       <h1>You Would Rather...</h1>
 
-      <!-- loops to display each choice, not sure why none are displaying-->
-      <p v-for="question in questions">{{ choice }}</p>
+      <!-- loops to display each choice -->
+      <p v-for="choice in choices">{{ choice }}</p>
 
   </div>
 </template>
@@ -55,19 +56,16 @@ export default {
           answer1: 'Have an elephant-sized cat',
           answer2: 'Have a cat-sized elephant'
         },
-      ]
+      ],
+      choices: []
     }
   },
   methods: {
 
     // funcion to display answer1 or answer2 depending on which radio button is pushed
     // not sure if this will work having trouble getting answers to display
-    answerChanged(choice) {
-      if (this.choice = answer1) {
-        this.choice.push(answer1)
-      } else {
-        this.choice.push(answer2)
-      }
+    answerChanged(id, choice) {
+      this.choices[id] = choice
     }
   }
 }

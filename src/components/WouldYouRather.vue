@@ -34,7 +34,7 @@ export default {
 
     // choices emitted to the parent, app.vue
     choiceMade() {
-      this.$emit('answer-changed', this.choice)
+      this.$emit('answer-changed', this.id, this.choice)
     }
   }
 }
